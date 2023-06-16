@@ -51,25 +51,89 @@ Since New York City is built in a grid plan, Chebyshev distance can be used to r
 
 ![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/9e235f51-52c4-4294-b5a1-2674f93768f7)
 
+### 6. Calculate Haversine bearing
 
-### 6. Add Airports
+
+
+### 7. Add Airports
 (1) JFK Airport: Longitude -73.7781, Latitude 40.6413  
 (2) LGA Airport: Longitude -73.8740, Latitude 40.7769  
 (3) EWR Airport: Longitude -74.1745, Latitude 40.6895  
 
 ![截圖 2023-06-16 下午4 25 12](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/a43d54f3-2b30-478e-bb1b-73a96a4fd6d3)  
 
-### 7. Remove Useless Items
+### 8. Remove Useless Items
 Remove ‘key’ and 'pickup_datatime’.
 
-### 8. Observe Correlation between Features and Target
+### 9. Observe Correlation between Features and Target
 ![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/a1bff4d9-2f99-4fa0-aa2c-00b4eea6c828)   
 
 
 ## Model Training
 ### 1. XGBoost
+```js
+params = {
+    'max_depth': 8,
+    'n_estimators':500,
+    'gamma' :0.,
+    'eta':.025, 
+    'subsample': 1.0,
+    'colsample_bytree': 0.8, 
+    'objective':'reg:linear',
+    'eval_metric':'rmse',
+    'silent': 0,
+    'verbosity' : 0,
+    'random_state' : 42,
+    'tree_method' : 'gpu_hist' #Use GPU
+}
+```
+```js
+def XGBmodel(X_train,X_valid,y_train,y_valid,params):
+    matrix_train = xgb.DMatrix(X_train,label=y_train)
+    matrix_valid = xgb.DMatrix(X_valid,label=y_valid)
+    model=xgb.train(params=params,
+                    dtrain=matrix_train,num_boost_round=10000, 
+                    early_stopping_rounds=100,evals=[(matrix_valid,'valid')])
+    return model
+
+model = XGBmodel(X_train,X_valid,y_train,y_valid,params)
+```  
+Score: 2.95230  
 
 ### 2. LightGBM
+```js
+params = {
+        'boosting_type':'gbdt',
+        'objective': 'regression',
+        'nthread': 4,
+        'num_leaves': 31,
+        'learning_rate': 0.05,
+        'max_depth': -1,
+        'subsample': 0.8,
+        'bagging_fraction' : 1,
+        'max_bin' : 5000 ,
+        'bagging_freq': 20,
+        'colsample_bytree': 0.6,
+        'metric': 'rmse',
+        'min_split_gain': 0.5,
+        'min_child_weight': 1,
+        'min_child_samples': 10,
+        'scale_pos_weight':1,
+        'zero_as_missing': True,
+        'seed':0,
+    }
+```
+```js
+def LGBmodel(params,X_train,y_train,X_valid,y_valid):
+    lgb_train = lgb.Dataset(X_train, y_train)
+    lgb_eval = lgb.Dataset(X_valid, y_valid, reference=lgb_train)
+    #model = lgb.train(params, lgb_train, num_boost_round=2000, valid_sets=lgb_eval,early_stopping_rounds=50)
+    model = lgb.train(params, lgb_train, num_boost_round=50000, valid_sets=lgb_eval,early_stopping_rounds=500, verbose_eval=500)
+    return model
+
+model = LGBmodel(params,X_train,y_train,X_valid,y_valid)
+```
+Score: 2.96653   
 
 ### 3. Ensemble
 
