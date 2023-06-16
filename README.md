@@ -21,7 +21,7 @@ https://www.kaggle.com/competitions/new-york-city-taxi-fare-prediction。
 - fare_amount
 
 ## Implements
-Flow chart
+Flow chart:
 
 ![flow chart](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/336a5213-3dbb-4ea2-abe4-68cc10b6e3ca)
 
