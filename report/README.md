@@ -25,17 +25,26 @@ The mask of water:
 
 <img width="441" alt="截圖 2023-06-16 下午3 50 37" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/424292c4-f09e-4f7b-a8a8-eebcd7d4c6ad">
 
+Remove positions on water:   
 <img width="696" alt="截圖 2023-06-16 下午3 51 50" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/9fb92fee-2a9f-4021-8964-db88b4fdce16">
 
-
-
 ### 3. Process Time Features
+Split ‘pickup_datatime’ into new features:  
+(1) year   
+(2) month  
+(3) weekday  
+(4) hour  
+
 
 ### 4. Calculate Haversing distance
 
 ### 5. Calculate Chebyshiv distance
 
 ### 6. Add Airports
+(1) JFK Airport: Longitude -73.7781, Latitude 40.6413  
+(2) LGA Airport: Longitude -73.8740, Latitude 40.7769  
+(3) EWR Airport: Longitude -74.1745, Latitude 40.6895  
+![截圖 2023-06-16 下午4 25 12](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/a43d54f3-2b30-478e-bb1b-73a96a4fd6d3)  
 
 ### 7. Remove Useless Items
 
