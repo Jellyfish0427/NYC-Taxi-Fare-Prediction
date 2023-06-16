@@ -4,10 +4,6 @@
 
 ## Data Processing
 ### 1. Remove Missing Data
-
-```
-train_df = train_df.drop(train_df.loc[train_df.isnull().any(axis=1)].index, axis=0)
-```   
 <img width="187" alt="截圖 2023-06-16 下午3 45 28" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/2f6633e5-a950-4104-99bf-a4c04eab4627">   
 
 ### 2. Remove Outliers
@@ -67,13 +63,14 @@ Since New York City is built in a grid plan, Chebyshev distance can be used to r
 Remove ‘key’ and 'pickup_datatime’.
 
 ### 8. Observe Correlation between Features and Target
+![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/a1bff4d9-2f99-4fa0-aa2c-00b4eea6c828)   
 
 
 ## Model Training
-### XGBoost
+### 1. XGBoost
 
-### LightGBM
+### 2. LightGBM
 
-### Ensemble
+### 3. Ensemble
 
 ## Conclusions
