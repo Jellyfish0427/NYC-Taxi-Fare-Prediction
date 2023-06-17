@@ -139,7 +139,7 @@ Score: 2.96653
 XGBoost * 0.1 + LightGBM * 0.2 + XGBoost(without Haversine bearing)*0.3 + LightGBM(without Haversine bearing)*0.4   
 Score: 2.87272  
 
-* the models were trained in dataset 15M
+*the models were trained in dataset 15M
  
 ## Future Direction
 ### 1. Increasing the number of samples in the training set
