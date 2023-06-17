@@ -136,5 +136,26 @@ model = LGBmodel(params,X_train,y_train,X_valid,y_valid)
 Score: 2.96653   
 
 ### 3. Ensemble
+XGBoost * 0.1 + LightGBM * 0.2 + XGBoost(without Haversine bearing)*0.3 + LightGBM(without Haversine bearing)*0.4   
+Score: 2.87272  
 
-## Conclusions
+* the models were trained in dataset 15M
+ 
+## Future Direction
+### 1. Increasing the number of samples in the training set
+We have found in our experiments that increasing the number of samples in the training set helps improve the accuracy of model predictions. However, it comes at the cost of consuming more hardware resources and time. In our future work, we plan to increase the sample size and the number of iterations for each model in order to effectively reduce the root mean square error (RMSE).
+
+### 2. Trying different models for training
+In this competition, we referred to the works of other participants and noticed that some of them did not use linear regression models. In our feature correlation analysis, we also observed that some features had low correlation with the target price. However, when we removed these features and trained the model, the predictive performance was not satisfactory. Therefore, we plan to incorporate some non-linear regression models into our ensemble model to achieve better results.
+
+### 3. Identifying other key factors affecting price
+In this competition, we considered various factors that could potentially influence the price. In addition to the features we ultimately used, we also explored incorporating seasonal or temporal information as feature categories. However, the results were not promising. Moving forward, we plan to explore the inclusion of weather-related factors in our analysis, with the expectation of achieving better results.
+
+
+## Conclusion
+In this work, we mostly put our effort on data pre-processing. In the beginning, besides features given in training data, we only considered calculating Haversine distance between pickup and drop-off location intuitively. However, the outcome was not satisfactory. Consequently, we increased diversity of training features by calculating different types of distance as well as adding popular landmarks in the city and attained better
+result. In data processing, it is important to consider all possible factors that may influence the occurrence of events. The other point is that increasing the number of training samples improves the accuracy of models’ predictions. Through a gradual expansion of the training dataset, we obtained prediction results with enhanced precision.
+
+
+
+
