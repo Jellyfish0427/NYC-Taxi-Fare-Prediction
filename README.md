@@ -3,12 +3,13 @@ NYC taxi fare prediction for Kaggle dataset.
 https://www.kaggle.com/competitions/new-york-city-taxi-fare-prediction。
 
 ## Dataset
+[Kaggle Dataset](https://www.kaggle.com/c/new-york-city-taxi-fare-prediction/data)
 ### File descriptions
 - train.csv: Input features and target ```fare_amount``` values for the training set (about 55M rows).
 - test.csv: Input features for the test set (about 10K rows). Your goal is to predict ```fare_amount``` for each row.
 - submission.csv: This file is the prediction of the features from test.csv.
 
-#### Features
+### Features
 - key
 - pickup_datetime
 - pickup_longitude
@@ -17,7 +18,7 @@ https://www.kaggle.com/competitions/new-york-city-taxi-fare-prediction。
 - dropoff_latitude
 - passenger_count
 
-#### Target
+### Target
 - fare_amount
 
 ## Implements
