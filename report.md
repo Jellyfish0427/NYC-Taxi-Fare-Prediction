@@ -1,31 +1,31 @@
 # New York City Fare Prediction
 ## Flow Chart
-![flow chart](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/26540318-d7e1-405d-90f2-7af11281179d)
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/flow_chart.png" width="600">
 
 ## Data Processing
 ### 1. Remove Missing Data
-<img width="187" alt="截圖 2023-06-16 下午3 45 28" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/2f6633e5-a950-4104-99bf-a4c04eab4627">   
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/missing_data.png" width="200">
+  
 
 ### 2. Remove Outliers
 #### (1) Remove passengers > 7 and < 1
-![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/dab61e48-5cf5-4015-9f40-9feb21856786)  
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/passengers.png" width="800">
 
 #### (2) Remove fare < 2.5 and > 500
-![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/a20fc199-4cc3-4018-932c-af1690c52149)  
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/fare.png" width="800"> 
 
 #### (3) Remove positions outside the New York City
-<img width="496" alt="截圖 2023-06-16 下午3 47 36" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/4c46f73c-ce94-45d2-89c4-f1b79bf9f07a">   
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/nyc_map.png" width="400">
 
 - Longitude: -72.8 ~ -74.5
 - Latitude: 40.5 ~ 41.8
 
 #### (4) Remove positions on the water
-The mask of water:
-
-<img width="441" alt="截圖 2023-06-16 下午3 50 37" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/424292c4-f09e-4f7b-a8a8-eebcd7d4c6ad">
+The mask of water:  
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/mask_of_water.png" width="400">
 
 Remove positions on water:   
-<img width="696" alt="截圖 2023-06-16 下午3 51 50" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/9fb92fee-2a9f-4021-8964-db88b4fdce16">
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/remove_on_water.png" width="1000">
 
 ### 3. Process Time Features
 Split ‘pickup_datatime’ into new features:  
@@ -38,18 +38,23 @@ Split ‘pickup_datatime’ into new features:
 The Haversine distance is the angular distance between two points on the surface of a sphere, it can be calculated with given longitude and latitude.  
 
 #### Haversine formula:  
-<img width="307" alt="截圖 2023-06-16 下午5 01 29" src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/b6643f25-a35e-40fa-a26d-578229afe236">     
+$a = \sin^2\left(\frac{\Delta\phi}{2}\right) + \cos \phi_1 \cdot \cos \phi_2 \cdot \sin^2\left(\frac{\Delta\lambda}{2}\right)$  
+
+$c = 2 \cdot \text{atan2}\left( \sqrt{a}, \sqrt{1−a} \right)$  
+
+$d = R \cdot c$  
 
 where φ is latitude, λ is longitude, R is earth's radius (mean radius = 6,371km)   
 
-![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/7fd2ce8c-bdf7-4f66-9a85-2231183dc5b1)  
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/Haversine.png" width="200">
 
 ### 5. Calculate Chebyshiv distance
 Since New York City is built in a grid plan, Chebyshev distance can be used to represent the distance between 2 locations in New York City.  
 #### Chebyshiv distance:  
-![截圖 2023-06-16 下午5 49 37](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/b99da61b-11c7-4bc8-b469-a528182a8db2)  
+$D_{Chebyshev}(x, y) = \max(|x_i - y_i|)$   
 
-![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/9e235f51-52c4-4294-b5a1-2674f93768f7)
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/Chebyshiv.png" width="200">
+
 
 ### 6. Calculate Haversine bearing
 
@@ -60,13 +65,15 @@ Since New York City is built in a grid plan, Chebyshev distance can be used to r
 (2) LGA Airport: Longitude -73.8740, Latitude 40.7769  
 (3) EWR Airport: Longitude -74.1745, Latitude 40.6895  
 
-![截圖 2023-06-16 下午4 25 12](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/a43d54f3-2b30-478e-bb1b-73a96a4fd6d3)  
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/airports.png" width="400">
+
 
 ### 9. Remove Useless Items
 Remove ‘key’ and 'pickup_datatime’.
 
 ### 10. Observe Correlation between Features and Target
-![image](https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/assets/128220508/a1bff4d9-2f99-4fa0-aa2c-00b4eea6c828)   
+<img src="https://github.com/Jellyfish0427/NYC-Taxi-Fare-Prediction/blob/main/img/heatmap.png" width="1000">
+  
 We can see that the distance features have the greatest correlation with fare.    
 
 ## Model Training
